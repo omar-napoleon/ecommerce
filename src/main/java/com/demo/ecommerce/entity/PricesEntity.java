@@ -39,8 +39,8 @@ public class PricesEntity {
     private BigDecimal price;
 
     @ManyToOne
-    @JoinColumn(name = "PRICE_LIST", referencedColumnName = "id", nullable = false)
-    private BasePricesEntity basePrice;
+    @JoinColumn(name = "FEE_ID", referencedColumnName = "id", nullable = false)
+    private FeesEntity fee;
 
     @Column(name = "CURR", nullable = false, length = 3)
     private String curr;

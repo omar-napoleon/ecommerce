@@ -1,14 +1,13 @@
 package com.demo.ecommerce.dto;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
-import java.time.Instant;
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 @Data
 @Builder
@@ -16,18 +15,18 @@ import java.time.Instant;
 @NoArgsConstructor
 public class EcommerceResponseDto implements Serializable {
 
-    @JsonInclude(JsonInclude.Include.NON_NULL)
-    private String productId;
+    private LocalDateTime startDate;
 
-    private String brandId;
-    private String brandName;
-    private Instant createdAt;
-    private Instant modifiedAt;
-    private Instant lastLogin;
-    @JsonInclude(JsonInclude.Include.NON_NULL)
-    private String token;
+    private LocalDateTime endDate;
 
-    @JsonProperty("isActive")
-    private boolean active;
+    private Integer productId;
+
+    private Integer brandId;
+
+    private BigDecimal price;
+
+    private BigDecimal fee;
+
+    private String curr;
 
 }
