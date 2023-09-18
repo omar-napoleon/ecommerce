@@ -1,0 +1,41 @@
+def jacocoExcludes = [
+        'org/springframework/http/**',
+        'com/demo/ecommerce/dto/**',
+        'com/demo/ecommerce/config/**',
+        'com/demo/ecommerce/handler/**',
+        'com/demo/ecommerce/exception/**',
+        'com/demo/ecommerce/entity**',
+        'com/demo/ecommerce/repository**',
+        'com/demo/ecommerce/service/EcommerceServiceI.java',
+        'com/demo/ecommerce/EcommerceApplication**',
+        'com/demo/ecommerce/mapper/StringToLocalDateTimeConverter**',
+]
+
+jacocoTestReport {
+    getExecutionData().from(fileTree(dir: "${buildDir}/jacoco", include: '**/*.exec'))
+    reports {
+        html.destination file("${buildDir}/jacocoHtml")
+    }
+    afterEvaluate {
+        classDirectories.setFrom(files(classDirectories.files.collect {
+            fileTree(dir: it, exclude: jacocoExcludes)
+        }))
+    }
+}
+
+jacocoTestCoverageVerification {
+    afterEvaluate {
+        classDirectories.setFrom(files(classDirectories.files.collect {
+            fileTree(dir: it, exclude: jacocoExcludes)
+        }))
+    }
+}
+
+jacocoTestReport {
+    dependsOn test
+}
+
+test {
+    useJUnitPlatform()
+    finalizedBy jacocoTestReport
+}

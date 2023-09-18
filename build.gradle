@@ -4,11 +4,9 @@ buildscript {
 		projectVersion = '0.0.1-SNAPSHOT'
 		springBootVersion = '3.1.4-SNAPSHOT'
 	}
-
 	repositories{
 		mavenCentral()
 	}
-
 }
 
 plugins {
@@ -17,6 +15,8 @@ plugins {
 	id 'io.spring.dependency-management' version '1.1.3'
 	id 'jacoco'
 }
+
+apply from: 'coverage.gradle'
 
 group = '${projectGroup}'
 version = '${projectVersion}'
@@ -61,19 +61,4 @@ dependencies {
 
 tasks.named('test') {
 	useJUnitPlatform()
-}
-
-task cucumberCli() {
-	dependsOn assemble, testClasses
-	doLast {
-		javaexec {
-			main = "io.cucumber.core.cli.Main"
-			classpath = configurations.cucumberRuntime + sourceSets.main.output + sourceSets.test.output
-			args = [
-					'--plugin', 'pretty',
-					'--plugin', 'html:target/cucumber-report.html',
-					'--glue', 'com.baeldung.cucumber',
-					'src/test/resources']
-		}
-	}
 }
