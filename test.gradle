@@ -50,10 +50,6 @@ task cucumberCli() {
     }
 }
 
-cucumber {
-    main = 'io.cucumber.core.cli.Main'
-}
-
 
 test {
     useJUnitPlatform()
