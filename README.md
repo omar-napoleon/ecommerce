@@ -57,3 +57,21 @@ curl -X 'GET' \
 -H 'accept: application/json'
 ```
 ![Reference image](img/response_200.png)
+
+### Cucumber test (acceptance tests)
+* Run test
+```shell
+    gradle bootRun
+  ./gradlew cucumber
+``` 
+* Feature tests
+![Reference image](img/feature.png)
+* [File: DemoEcommerce.feature](src/test/resources/features/DemoEcommerce.feature)
+
+### Unit test
+* Run test
+```shell
+  ./gradlew test
+``` 
+* jacoco report
+![Reference image](img/unit_test.png)
