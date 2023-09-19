@@ -35,6 +35,26 @@ jacocoTestReport {
     dependsOn test
 }
 
+task cucumberCli() {
+    dependsOn assemble, testClasses
+    doLast {
+        javaexec {
+            main = "io.cucumber.core.cli.Main"
+            classpath = configurations.cucumberRuntime + sourceSets.main.output + sourceSets.test.output
+            args = [
+                    '--plugin', 'pretty',
+                    '--plugin', 'html:build/cucumber/cucumber-report.html',
+                    '--glue', 'com.demo.ecommerce.cucumber.test',
+                    'src/test/resources']
+        }
+    }
+}
+
+cucumber {
+    main = 'io.cucumber.core.cli.Main'
+}
+
+
 test {
     useJUnitPlatform()
     finalizedBy jacocoTestReport

@@ -1,4 +1,4 @@
-package com.demo.ecommerce.helper;
+package com.demo.ecommerce.cucumber.helper;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -6,7 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class JsonHelper {
 
-    public static <T> String objecToJson(ObjectMapper objectMapper, T object) throws JsonProcessingException {
+    public static <T> String objectToJson(ObjectMapper objectMapper, T object) throws JsonProcessingException {
         return objectMapper.writeValueAsString(object);
     }
 
