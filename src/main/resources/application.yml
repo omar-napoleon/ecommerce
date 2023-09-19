@@ -1,4 +1,20 @@
-## DB H2
+########## MS ECOMMERCE ##########
+server:
+  port : 8081
+
+########## OPEN API ##########
+springdoc:
+  api-docs:
+    enabled: true
+    path: /doc/swagger-json.html
+    version:
+  swagger-ui:
+    path: /doc/swagger-ui.html
+    enabled: true
+  packages-to-scan: com.demo.ecommerce
+
+
+########## DB H2 ##########
 spring:
   datasource:
     url: jdbc:h2:mem:ecommerce
@@ -13,12 +29,8 @@ spring:
     spring.jpa.database-platform: org.hibernate.dialect.H2Dialect
     hibernate:
       ddl-auto: none
-    #defer-datasource-initialization: true
-
   sql:
     init:
       data-locations: classpath:db_schema.sql
 
-server:
-  port : 8081
 
